@@ -90,7 +90,26 @@ public class MainActivity extends AppCompatActivity {
 
         btnDivisor.setOnClickListener((View view) -> InputText.setText(InputText.getText() + "÷"));
 
-        btnQuote.setOnClickListener((View view) -> InputText.setText(InputText.getText() + "("));
+        btnQuote.setOnClickListener((View view) -> {
+            int cursorPos = InputText.getSelectionStart();
+            int openQuo = 0;
+            int closeQuo = 0;
+            int textLen = InputText.getText().length();
+
+            for(int i = 0; i < cursorPos; i++){
+                if(InputText.getText().toString().substring(i, i+1).equals("(")) {
+                    openQuo += 1;
+                } else if (InputText.getText().toString().substring(i, i+1).equals(")")){
+                    closeQuo += 1;
+                }
+            }
+            if(openQuo == closeQuo || InputText.getText().toString().substring(textLen - 1,textLen).equals("(")){
+                InputText.setText("(");
+            }
+            if(openQuo < closeQuo || ! InputText.getText().toString().substring(textLen - 1,textLen).equals("(")){
+                InputText.setText(")");
+            }
+        });
 
         btnSin.setOnClickListener((View view) -> InputText.setText(InputText.getText() + "sin"));
 
