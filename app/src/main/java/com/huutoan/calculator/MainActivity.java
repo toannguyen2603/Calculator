@@ -3,6 +3,7 @@ package com.huutoan.calculator;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
@@ -36,5 +37,52 @@ public class MainActivity extends AppCompatActivity {
         btnAc =findViewById(R.id.btnAc);
         btnDelete =findViewById(R.id.btnDelete);
         btnEqual =findViewById(R.id.btnEqual);
+
+//        Get ID text view output
+        InputText = findViewById(R.id.InputText);
+        OutputText = findViewById(R.id.OutputText);
+
+//        Onclick listener
+        b1.setOnClickListener((View view) -> {
+            InputText.setText(InputText.getText() + "1");
+        });
+        b2.setOnClickListener((View view) -> {
+            InputText.setText(InputText.getText() + "2");
+        });
+        b3.setOnClickListener((View view) -> {
+            InputText.setText(InputText.getText() + "3");
+        });
+        b4.setOnClickListener((View view) -> {
+            InputText.setText(InputText.getText() + "4");
+        });
+        b5.setOnClickListener((View view) -> {
+            InputText.setText(InputText.getText() + "5");
+        });
+        b6.setOnClickListener((View view) -> {
+            InputText.setText(InputText.getText() + "6");
+        });
+        b7.setOnClickListener((View view) -> {
+            InputText.setText(InputText.getText() + "7");
+        });
+        b8.setOnClickListener((View view) -> {
+            InputText.setText(InputText.getText() + "8");
+        });
+        b9.setOnClickListener((View view) -> {
+            InputText.setText(InputText.getText() + "9");
+        });
+        btnDot.setOnClickListener((View view) -> {
+            InputText.setText(InputText.getText() + ".");
+        });
+        btnAc.setOnClickListener((View view) -> {
+            InputText.setText(" ");
+        });
+        btnDelete.setOnClickListener((View view) -> {
+            String value = InputText.getText().toString();
+            value = value.substring(0, value.length() - 1);
+            InputText.setText(value);
+        });
+
     }
+
+
 }
