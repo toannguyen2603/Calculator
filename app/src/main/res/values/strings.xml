@@ -1,0 +1,25 @@
+<resources>
+    <string name="app_name">Calculator</string>
+    <string name="Ac">Ac</string>
+    <string name="C">C</string>
+    <string name="Quotes">()</string>
+    <string name="Divisor">÷</string>
+    <string name="Multiply">×</string>
+    <string name="Number1">1</string>
+    <string name="Number2">2</string>
+    <string name="Number3">3</string>
+    <string name="Number4">4</string>
+    <string name="Number5">5</string>
+    <string name="Number6">6</string>
+    <string name="Number7">7</string>
+    <string name="Number8">8</string>
+    <string name="Number9">9</string>
+    <string name="Number0">0</string>
+    <string name="Equal">=</string>
+    <string name="Plus">+</string>
+    <string name="Minus">-</string>
+    <string name="Dot">.</string>
+    <string name="Factorial">x!</string>
+    <string name="sin">sin</string>
+
+</resources>
