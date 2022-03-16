@@ -7,7 +7,7 @@
     android:weightSum="10"
     android:orientation="vertical"
     >
-    
+
     <TextView
         android:id="@+id/InputText"
         android:layout_width="match_parent"
@@ -21,21 +21,19 @@
         android:gravity="bottom"
         android:maxLines="1"
         android:paddingEnd="20dp"
-        tools:ignore="RtlCompat,RtlSymmetry" />
+        tools:ignore="RtlCompat" />
     <TextView
         android:id="@+id/OutputText"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
         android:background="@color/black_blue"
-        android:text="0"
+        android:text="@string/zero"
         android:textColor="#fff"
         android:textSize="50sp"
         android:textAlignment="viewEnd"
-        android:gravity="bottom"
         android:maxLines="1"
-        android:paddingEnd="20dp"
-        tools:ignore="RtlCompat,RtlSymmetry" />
+        android:paddingEnd="20dp"/>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
@@ -48,6 +46,7 @@
             android:orientation="vertical"
             android:layout_margin="20dp"
             tools:ignore="UselessParent">
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -62,7 +61,6 @@
                     tools:ignore="UselessParent">
 
                     <Button
-                        style="@style/Animation.Design.BottomSheetDialog"
                         android:id="@+id/btnFac"
                         android:layout_width="match_parent"
                         android:layout_height="50dp"
@@ -76,7 +74,6 @@
                         />
 
                     <Button
-                        style="@style/Animation.Design.BottomSheetDialog"
                         android:id="@+id/btnSin"
                         android:layout_width="match_parent"
                         android:layout_height="50dp"
@@ -90,7 +87,6 @@
 
                         />
                     <Button
-                        style="@style/Animation.Design.BottomSheetDialog"
 
                         android:id="@+id/btnPer"
                         android:layout_width="match_parent"
@@ -106,14 +102,13 @@
 
                         />
                     <Button
-                        style="@style/Animation.Design.BottomSheetDialog"
                         android:id="@+id/btnXX"
                         android:layout_width="match_parent"
                         android:layout_height="50dp"
                         android:layout_gravity="center"
                         android:layout_margin="4dp"
                         android:textAlignment="center"
-                        android:text="Round"
+                        android:text="@string/mu"
                         android:textColor="@color/light_blue"
                         android:layout_weight="1"
                         android:background= "@drawable/number_button"
@@ -122,8 +117,6 @@
                 </LinearLayout>
 
             </LinearLayout>
-
-
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -138,7 +131,6 @@
                     android:weightSum="4"
                     tools:ignore="UselessParent">
                     <Button
-                        style="@style/Animation.Design.BottomSheetDialog"
                         android:id="@+id/btnAc"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
@@ -149,20 +141,20 @@
                         android:textSize="30sp"
                         android:layout_weight="1"
                         />
+
                     <Button
-                        style="@style/Animation.Design.BottomSheetDialog"
                         android:id="@+id/btnDelete"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:background="@drawable/ac_button"
-                        android:text="@string/C"
                         android:layout_margin="6dp"
-                        android:textColor="#A5A5A5"
-                        android:textSize="30sp"
                         android:layout_weight="1"
-                        />
+                        android:background="@drawable/ac_button"
+                        android:contentDescription="@string/C"
+                        android:foreground="@drawable/backspace_icon_foreground"
+                        android:text=""
+                        android:textColor="#A5A5A5"
+                        android:textSize="30sp" />
                     <Button
-                        style="@style/Animation.Design.BottomSheetDialog"
                         android:id="@+id/btnQuote"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
@@ -174,7 +166,6 @@
                         android:layout_weight="1"
                         />
                     <Button
-                        style="@style/Animation.Design.BottomSheetDialog"
                         android:id="@+id/btnDiv"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
@@ -189,8 +180,6 @@
                 </LinearLayout>
 
             </LinearLayout>
-
-
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -256,8 +245,6 @@
                 </LinearLayout>
 
             </LinearLayout>
-
-
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -387,7 +374,6 @@
                 </LinearLayout>
 
             </LinearLayout>
-
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"

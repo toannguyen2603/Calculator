@@ -4,13 +4,14 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
 
-    Button b0, b1, b2, b3, b4, b5, b6, b7, b8, b9, btnMinus, btnFactorial, btnSin, btnPercent, btnXX, btnQuote, btnDivisor, btnMultiple, btnPlus, btnDot;
+    Button b0, b1, b2, b3, b4, b5, b6, b7, b8, b9, btnMinus, btnFactorial, btnSin, btnPercent, btnQuote, btnDivisor, btnMultiple, btnPlus, btnDot;
     Button btnAc, btnDelete, btnEqual;
     TextView  InputText, OutputText;
 
@@ -48,6 +49,8 @@ public class MainActivity extends AppCompatActivity {
         OutputText = findViewById(R.id.OutputText);
 
 //        Onclick listener
+        b0.setOnClickListener((View view) -> InputText.setText(InputText.getText() + "0"));
+
         b1.setOnClickListener((View view) -> InputText.setText(InputText.getText() + "1"));
 
         b2.setOnClickListener((View view) -> InputText.setText(InputText.getText() + "2"));
@@ -67,16 +70,18 @@ public class MainActivity extends AppCompatActivity {
         b9.setOnClickListener((View view) -> InputText.setText(InputText.getText() + "9"));
 
         btnDot.setOnClickListener((View view) -> InputText.setText(InputText.getText() + "."));
+
         btnAc.setOnClickListener((View view) -> {
             InputText.setText("");
             OutputText.setText("0");
         });
+
         btnDelete.setOnClickListener((View view) -> {
             String value = InputText.getText().toString();
-            if (value.length() == 0) {
-                InputText.setText(value);
-            } else  {
+            if (value.length() != 0) {
                 value = value.substring(0, value.length() - 1);
+                InputText.setText(value);
+            } else {
                 InputText.setText(value);
             }
 
@@ -92,21 +97,22 @@ public class MainActivity extends AppCompatActivity {
 
         btnQuote.setOnClickListener((View view) -> {
             int cursorPos = InputText.getSelectionStart();
+            Log.i("Message", String.valueOf(cursorPos));
             int openQuo = 0;
             int closeQuo = 0;
             int textLen = InputText.getText().length();
 
             for(int i = 0; i < cursorPos; i++){
-                if(InputText.getText().toString().substring(i, i+1).equals("(")) {
+                if(InputText.getText().toString().charAt(i) == '(') {
                     openQuo += 1;
-                } else if (InputText.getText().toString().substring(i, i+1).equals(")")){
+                } else if (InputText.getText().toString().charAt(i) == ')'){
                     closeQuo += 1;
                 }
             }
-            if(openQuo == closeQuo || InputText.getText().toString().substring(textLen - 1,textLen).equals("(")){
+            if(openQuo == closeQuo || InputText.getText().toString().charAt(textLen - 1) == '('){
                 InputText.setText("(");
             }
-            if(openQuo < closeQuo || ! InputText.getText().toString().substring(textLen - 1,textLen).equals("(")){
+            if(openQuo < closeQuo || '(' != InputText.getText().toString().charAt(textLen - 1)){
                 InputText.setText(")");
             }
         });
@@ -123,8 +129,8 @@ public class MainActivity extends AppCompatActivity {
 
         btnEqual.setOnClickListener((View view) -> {
             String val = InputText.getText().toString();
-            String replacedstr = val.replace('÷','/').replace('×','*');
-            double result = eval(replacedstr);
+            String replace = val.replace('÷','/').replace('×','*');
+            double result = eval(replace);
             OutputText.setText(String.valueOf(result));
             InputText.setText(val);
         });
@@ -163,12 +169,6 @@ public class MainActivity extends AppCompatActivity {
                 return x;
             }
 
-            // Grammar:
-            // expression = term | expression `+` term | expression `-` term
-            // term = factor | term `*` factor | term `/` factor
-            // factor = `+` factor | `-` factor | `(` expression `)`
-            //        | number | functionName factor | factor `^` factor
-
             double parseExpression() {
                 double x = parseTerm();
                 for (;;) {
@@ -203,13 +203,16 @@ public class MainActivity extends AppCompatActivity {
                     while (ch >= 'a' && ch <= 'z') nextChar();
                     String func = str.substring(startPos, this.pos);
                     x = parseFactor();
-                    if (func.equals("sqrt")) x = Math.sqrt(x);
-                    else if (func.equals("sin")) x = Math.sin(Math.toRadians(x));
-                    else if (func.equals("cos")) x = Math.cos(Math.toRadians(x));
-                    else if (func.equals("tan")) x = Math.tan(Math.toRadians(x));
-                    else if (func.equals("log")) x = Math.log10(x);
-                    else if (func.equals("ln")) x = Math.log(x);
-                    else throw new RuntimeException("Unknown function: " + func);
+                    switch (func) {
+                        case "sqrt":
+                            x = Math.sqrt(x);
+                            break;
+                        case "sin":
+                            x = Math.sin(Math.toRadians(x));
+                            break;
+                        default:
+                            throw new RuntimeException("Unknown function: " + func);
+                    }
                 } else {
                     throw new RuntimeException("Unexpected: " + (char)ch);
                 }

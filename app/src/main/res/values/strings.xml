@@ -5,6 +5,7 @@
     <string name="Quotes">()</string>
     <string name="Divisor">÷</string>
     <string name="Multiply">×</string>
+    <string name="zero">0</string>
     <string name="Number1">1</string>
     <string name="Number2">2</string>
     <string name="Number3">3</string>
@@ -22,4 +23,5 @@
     <string name="Factorial">x!</string>
     <string name="sin">sin</string>
     <string name="percent">%</string>
+    <string name="mu">^</string>
 </resources>
