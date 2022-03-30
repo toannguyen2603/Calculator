@@ -20,9 +20,14 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        getLayout();
+        getEvent();
+        statusBarColor();
+    }
 
-        b0 =findViewById(R.id.btn0);
-        b1 =findViewById(R.id.btn1);
+    public void getLayout() {
+        b0 = findViewById(R.id.btn0);
+        b1 = findViewById(R.id.btn1);
         b2 =findViewById(R.id.btn2);
         b3 =findViewById(R.id.btn3);
         b4 =findViewById(R.id.btn4);
@@ -47,29 +52,41 @@ public class MainActivity extends AppCompatActivity {
 //        Get ID text view output
         InputText = findViewById(R.id.InputText);
         OutputText = findViewById(R.id.OutputText);
+    }
 
-//        Onclick listener
-        b0.setOnClickListener((View view) -> InputText.setText(InputText.getText() + "0"));
+//    method
+    public void getTextInput(Button x ,String n) {
+        x.setOnClickListener((View view) -> InputText.setText(InputText.getText() + n));
+    }
 
-        b1.setOnClickListener((View view) -> InputText.setText(InputText.getText() + "1"));
+//    get listener
+    public  void getEvent(){
 
-        b2.setOnClickListener((View view) -> InputText.setText(InputText.getText() + "2"));
+        getTextInput(b0,"0");
+        getTextInput(b1,"1");
+        getTextInput(b2,"2");
+        getTextInput(b3,"3");
+        getTextInput(b4,"4");
+        getTextInput(b5,"5");
+        getTextInput(b6,"6");
+        getTextInput(b7,"7");
+        getTextInput(b8,"8");
+        getTextInput(b9,"9");
+        getTextInput(btnPlus,"+");
+        getTextInput(btnMinus,"-");
+        getTextInput(btnMultiple,"×");
+        getTextInput(btnDivisor,"÷");
 
-        b3.setOnClickListener((View view) -> InputText.setText(InputText.getText() + "3"));
+        btnDot.setOnClickListener((View view) -> {
+            String val = InputText.getText().toString();
+            if(val.isEmpty()) {
+                String dot = "0" + ".";
+                InputText.setText(dot);
+            } else {
+                InputText.setText(InputText.getText() + ".");
+            }
+        });
 
-        b4.setOnClickListener((View view) -> InputText.setText(InputText.getText() + "4"));
-
-        b5.setOnClickListener((View view) -> InputText.setText(InputText.getText() + "5"));
-
-        b6.setOnClickListener((View view) -> InputText.setText(InputText.getText() + "6"));
-
-        b7.setOnClickListener((View view) -> InputText.setText(InputText.getText() + "7"));
-
-        b8.setOnClickListener((View view) -> InputText.setText(InputText.getText() + "8"));
-
-        b9.setOnClickListener((View view) -> InputText.setText(InputText.getText() + "9"));
-
-        btnDot.setOnClickListener((View view) -> InputText.setText(InputText.getText() + "."));
 
         btnAc.setOnClickListener((View view) -> {
             InputText.setText("");
@@ -82,18 +99,10 @@ public class MainActivity extends AppCompatActivity {
                 value = value.substring(0, value.length() - 1);
                 InputText.setText(value);
             } else {
-                InputText.setText(value);
+                InputText.setText("");
             }
 
         });
-
-        btnPlus.setOnClickListener((View view) -> InputText.setText(InputText.getText() + "+"));
-
-        btnMinus.setOnClickListener((View view) -> InputText.setText(InputText.getText() + "-"));
-
-        btnMultiple.setOnClickListener((View view) -> InputText.setText(InputText.getText() + "×"));
-
-        btnDivisor.setOnClickListener((View view) -> InputText.setText(InputText.getText() + "÷"));
 
         btnQuote.setOnClickListener((View view) -> {
             int cursorPos = InputText.getSelectionStart();
@@ -117,32 +126,37 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        btnSin.setOnClickListener((View view) -> InputText.setText(InputText.getText() + "sin"));
+        getTextInput(btnSin,"sin");
 
         btnFactorial.setOnClickListener((View view) -> {
             int value = Integer.parseInt(InputText.getText().toString());
+
             int fact = factorial(value);
             OutputText.setText(String.valueOf(fact));
-            InputText.setText(value+"!");
+            String x = value + "!";
+            InputText.setText(x);
 
         });
 
         btnEqual.setOnClickListener((View view) -> {
             String val = InputText.getText().toString();
+            if (val.isEmpty()) {
+                return;
+            }
             String replace = val.replace('÷','/').replace('×','*');
             double result = eval(replace);
             OutputText.setText(String.valueOf(result));
             InputText.setText(val);
-        });
 
+        });
     }
+
 
 //    Create factorial function
     int factorial (int n) {
         return (n == 1 || n == 0) ? 1 : n*factorial(n - 1);
     }
 
-//    eval function
 
     //eval function
     public static double eval(final String str) {
@@ -218,9 +232,12 @@ public class MainActivity extends AppCompatActivity {
                 }
 
                 if (eat('^')) x = Math.pow(x, parseFactor()); // exponentiation
-
                 return x;
             }
         }.parse();
+    }
+
+    public final void statusBarColor(){
+        getWindow().setStatusBarColor(getResources().getColor(R.color.light_blue,getTheme()));
     }
 }
